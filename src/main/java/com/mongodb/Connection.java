@@ -6,18 +6,20 @@ import com.mongodb.diagnostics.logging.Loggers;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Connection {
 
-    private static final String connectionString = "mongodb+srv://<USERNAME>:<PASSWORD>@cluster0-abcde.mongodb.net/test?w=majority";
+    private final static ResourceBundle PROPERTIES = ResourceBundle.getBundle("application");
 
     public static void main(String[] args) {
         Logger.getLogger(Loggers.PREFIX).setLevel(Level.WARNING);
-        MongoClient mongoClient = MongoClients.create(connectionString);
-        ArrayList<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
-        databases.forEach(System.out::println);
-        mongoClient.close();
+        try (MongoClient mongoClient = MongoClients.create(PROPERTIES.getString("mongodb.uri"))) {
+            List<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
+            databases.forEach(db -> System.out.println(db.toJson()));
+        }
     }
 }
