@@ -6,7 +6,7 @@ You can read more about the Quick Start series on the [MongoDB blog Quick Start 
 
 # MongoDB Cluster
 
-To get started with MongoDB and get a free cluster read [this blog post](https://www.mongodb.com/blog/post/quick-start-getting-your-free-mongodb-atlas-cluster).
+To get started with MongoDB Atlas and get a free cluster read [this blog post](https://www.mongodb.com/blog/post/quick-start-getting-your-free-mongodb-atlas-cluster).
 
 # Requirements
 
@@ -15,8 +15,22 @@ To get started with MongoDB and get a free cluster read [this blog post](https:/
 
 # Command lines
 
-- Compile: `mvn clean compile`.
-- Run the `Connection` class: `mvn clean compile exec:java -Dexec.mainClass="com.mongodb.Connection"`.
+- Compile: 
+
+```
+mvn clean compile
+```
+
+- Run the `HelloMongoDB` class: 
+
+```
+mvn compile exec:java -Dexec.mainClass="com.mongodb.HelloMongoDB"
+```
+- Run the `Connection` class: 
+
+```
+mvn compile exec:java -Dexec.mainClass="com.mongodb.Connection" -Dmongodb.uri=mongodb+srv://USERNAME:PASSWORD@cluster0-abcde.mongodb.net/test?w=majority
+```
 
 # Author
 
