@@ -14,7 +14,8 @@ public class Connection {
 
     public static void main(String[] args) {
         Logger.getLogger(Loggers.PREFIX).setLevel(Level.WARNING);
-        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
+        String connectionString = System.getProperty("mongodb.uri");
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             List<Document> databases = mongoClient.listDatabases().into(new ArrayList<>());
             databases.forEach(db -> System.out.println(db.toJson()));
         }
