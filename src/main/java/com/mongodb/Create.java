@@ -34,12 +34,8 @@ public class Create {
     }
 
     private static void insertOneDocument(MongoCollection<Document> gradesCollection) {
-        try {
-            gradesCollection.insertOne(generateNewGrade(10000d, 1d));
-            System.out.println("One document inserted.");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
+        gradesCollection.insertOne(generateNewGrade(10000d, 1d));
+        System.out.println("One grade inserted for studentId 10000.");
     }
 
     private static void insertManyDocuments(MongoCollection<Document> gradesCollection) {
@@ -48,12 +44,8 @@ public class Create {
             grades.add(generateNewGrade(10001d, classId));
         }
 
-        try {
-            gradesCollection.insertMany(grades, new InsertManyOptions().ordered(false));
-            System.out.println("Ten documents inserted.");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
+        gradesCollection.insertMany(grades, new InsertManyOptions().ordered(false));
+        System.out.println("Ten grades inserted for studentId 10001.");
     }
 
     private static Document generateNewGrade(double studentId, double classId) {
