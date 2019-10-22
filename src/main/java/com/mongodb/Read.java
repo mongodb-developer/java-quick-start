@@ -48,12 +48,12 @@ public class Read {
                 System.out.println(student.toJson());
             }
 
-            // find a list using and print using a consumer
+            // find a list of documents and print using a consumer
             System.out.println("Student list using a Consumer:");
             Consumer<Document> printConsumer = document -> System.out.println(document.toJson());
             gradesCollection.find(gte("student_id", 10000)).forEach(printConsumer);
 
-            // find a list of documents with sort, skip and limit
+            // find a list of documents with sort, skip, limit and projection
             List<Document> docs = gradesCollection.find(and(eq("student_id", 10001), lte("class_id", 5)))
                                                   .projection(fields(excludeId(), include("class_id", "student_id")))
                                                   .sort(descending("class_id"))
