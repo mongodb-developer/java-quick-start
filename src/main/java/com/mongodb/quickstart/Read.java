@@ -1,4 +1,4 @@
-package com.mongodb;
+package com.mongodb.quickstart;
 
 import com.mongodb.client.*;
 import org.bson.Document;
