@@ -1,7 +1,6 @@
 package com.mongodb;
 
 import com.mongodb.client.*;
-import com.mongodb.diagnostics.logging.Loggers;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class Read {
     private static final Random rand = new Random();
 
     public static void main(String[] args) {
-        Logger.getLogger(Loggers.PREFIX).setLevel(Level.WARNING);
+        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
             MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("grades");
