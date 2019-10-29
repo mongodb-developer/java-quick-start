@@ -1,11 +1,10 @@
-package com.mongodb;
+package com.mongodb.quickstart;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.InsertManyOptions;
-import com.mongodb.diagnostics.logging.Loggers;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -22,7 +21,7 @@ public class Create {
     private static final Random rand = new Random();
 
     public static void main(String[] args) {
-        Logger.getLogger(Loggers.PREFIX).setLevel(Level.WARNING);
+        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
 
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");

@@ -1,4 +1,4 @@
-package com.mongodb;
+package com.mongodb.quickstart;
 
 public class HelloMongoDB {
 
