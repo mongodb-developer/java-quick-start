@@ -39,7 +39,7 @@ public class Create {
 
     private static void insertManyDocuments(MongoCollection<Document> gradesCollection) {
         List<Document> grades = new ArrayList<>();
-        for (int classId = 1; classId <= 10; classId++) {
+        for (double classId = 1d; classId <= 10d; classId++) {
             grades.add(generateNewGrade(10001d, classId));
         }
 
