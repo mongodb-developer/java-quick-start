@@ -5,7 +5,6 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +14,6 @@ import static com.mongodb.client.model.Projections.*;
 import static com.mongodb.client.model.Sorts.descending;
 
 public class Read {
-
-    private static final Random rand = new Random();
 
     public static void main(String[] args) {
         Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
