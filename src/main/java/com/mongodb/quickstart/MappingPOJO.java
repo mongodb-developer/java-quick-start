@@ -5,6 +5,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.quickstart.models.Grade;
@@ -35,7 +36,8 @@ public class MappingPOJO {
                                                                 .codecRegistry(codecRegistry)
                                                                 .build();
         try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
-            MongoCollection<Grade> grades = mongoClient.getDatabase("sample_training").getCollection("grades", Grade.class);
+            MongoDatabase db = mongoClient.getDatabase("sample_training");
+            MongoCollection<Grade> grades = db.getCollection("grades", Grade.class);
 
             // create a new grade.
             Grade newGrade = new Grade().setStudent_id(10003d)
