@@ -1,5 +1,6 @@
 package com.mongodb.quickstart.models;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 import java.util.List;
@@ -8,8 +9,10 @@ import java.util.Objects;
 public class Grade {
 
     private ObjectId id;
-    private Double student_id;
-    private Double class_id;
+    @BsonProperty(value = "student_id")
+    private Double studentId;
+    @BsonProperty(value = "class_id")
+    private Double classId;
     private List<Score> scores;
 
     public ObjectId getId() {
@@ -21,21 +24,21 @@ public class Grade {
         return this;
     }
 
-    public Double getStudent_id() {
-        return student_id;
+    public Double getStudentId() {
+        return studentId;
     }
 
-    public Grade setStudent_id(Double student_id) {
-        this.student_id = student_id;
+    public Grade setStudentId(Double studentId) {
+        this.studentId = studentId;
         return this;
     }
 
-    public Double getClass_id() {
-        return class_id;
+    public Double getClassId() {
+        return classId;
     }
 
-    public Grade setClass_id(Double class_id) {
-        this.class_id = class_id;
+    public Grade setClassId(Double classId) {
+        this.classId = classId;
         return this;
     }
 
@@ -52,8 +55,8 @@ public class Grade {
     public String toString() {
         final StringBuffer sb = new StringBuffer("Grade{");
         sb.append("id=").append(id);
-        sb.append(", student_id=").append(student_id);
-        sb.append(", class_id=").append(class_id);
+        sb.append(", student_id=").append(studentId);
+        sb.append(", class_id=").append(classId);
         sb.append(", scores=").append(scores);
         sb.append('}');
         return sb.toString();
@@ -66,13 +69,13 @@ public class Grade {
         if (o == null || getClass() != o.getClass())
             return false;
         Grade grade = (Grade) o;
-        return Objects.equals(id, grade.id) && Objects.equals(student_id, grade.student_id) && Objects.equals(class_id,
-                                                                                                              grade.class_id) && Objects
+        return Objects.equals(id, grade.id) && Objects.equals(studentId, grade.studentId) && Objects.equals(classId,
+                                                                                                            grade.classId) && Objects
                 .equals(scores, grade.scores);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, student_id, class_id, scores);
+        return Objects.hash(id, studentId, classId, scores);
     }
 }
