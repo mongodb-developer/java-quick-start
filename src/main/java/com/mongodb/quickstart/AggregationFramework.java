@@ -1,12 +1,16 @@
 package com.mongodb.quickstart;
 
-import com.mongodb.client.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,9 +45,10 @@ public class AggregationFramework {
         Bson group = group("$city", sum("totalPop", "$pop"));
         Bson project = project(fields(excludeId(), include("totalPop"), computed("city", "$_id")));
         Bson sort = sort(descending("totalPop"));
+        Bson limit = limit(3);
 
-        ArrayList<Document> results = zips.aggregate(Arrays.asList(match, group, project, sort, limit(3)))
-                                          .into(new ArrayList<>());
+        List<Document> results = zips.aggregate(Arrays.asList(match, group, project, sort, limit))
+                                     .into(new ArrayList<>());
         System.out.println("==> 3 most densely populated cities in Texas");
         results.forEach(printDocuments());
     }
@@ -56,9 +61,10 @@ public class AggregationFramework {
         Bson unwind = unwind("$tags");
         Bson group = group("$tags", sum("count", 1L), push("titles", "$title"));
         Bson sort = sort(descending("count"));
+        Bson limit = limit(3);
         Bson project = project(fields(excludeId(), computed("tag", "$_id"), include("count", "titles")));
 
-        ArrayList<Document> results = posts.aggregate(Arrays.asList(unwind, group, sort, limit(3), project)).into(new ArrayList<>());
+        List<Document> results = posts.aggregate(Arrays.asList(unwind, group, sort, limit, project)).into(new ArrayList<>());
         System.out.println("==> 3 most popular tags and their posts titles");
         results.forEach(printDocuments());
     }

@@ -40,10 +40,11 @@ public class MappingPOJO {
             MongoCollection<Grade> grades = db.getCollection("grades", Grade.class);
 
             // create a new grade.
-            Grade newGrade = new Grade().setStudent_id(10003d)
-                                        .setClass_id(10d)
+            Grade newGrade = new Grade().setStudentId(10003d)
+                                        .setClassId(10d)
                                         .setScores(singletonList(new Score().setType("homework").setScore(50d)));
             grades.insertOne(newGrade);
+            System.out.println("Grade inserted.");
 
             // find this grade.
             Grade grade = grades.find(eq("student_id", 10003d)).first();
@@ -59,7 +60,7 @@ public class MappingPOJO {
             System.out.println("Grade replaced:\t" + updatedGrade);
 
             // delete this grade
-            System.out.println(grades.deleteOne(filterByGradeId));
+            System.out.println("Grade deleted:\t" + grades.deleteOne(filterByGradeId));
         }
     }
 }
