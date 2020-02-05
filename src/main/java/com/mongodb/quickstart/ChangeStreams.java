@@ -8,14 +8,19 @@ import com.mongodb.quickstart.models.Grade;
 import org.bson.BsonDocument;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.in;
+import static com.mongodb.client.model.changestream.FullDocument.UPDATE_LOOKUP;
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -34,28 +39,32 @@ public class ChangeStreams {
         try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
             MongoDatabase db = mongoClient.getDatabase("sample_training");
             MongoCollection<Grade> grades = db.getCollection("grades", Grade.class);
+            List<Bson> pipeline;
 
             // Only uncomment one example at a time. Follow instructions for each individually then kill all remaining processes.
 
             /** => Example 1: print all the write operations.
              *  => Start "ChangeStreams" then "MappingPOJOs" to see some change events.
              */
-            grades.watch().forEach(print());
+            grades.watch().forEach(printEvent());
 
             /** => Example 2: print only insert and delete operations.
              *  => Start "ChangeStreams" then "MappingPOJOs" to see some change events.
              */
-            // grades.watch(asList(match(in("operationType", asList("insert", "delete"))))).forEach(print());
+            // pipeline = singletonList(match(in("operationType", asList("insert", "delete"))));
+            // grades.watch(pipeline).forEach(printEvent());
 
             /** => Example 3: print only updates without fullDocument.
              *  => Start "ChangeStreams" then "Update" to see some change events (start "Create" before if not done earlier).
              */
-            // grades.watch(asList(match(eq("operationType", "update")))).forEach(print());
+            // pipeline = singletonList(match(eq("operationType", "update")));
+            // grades.watch(pipeline).forEach(printEvent());
 
             /** => Example 4: print only updates with fullDocument.
              *  => Start "ChangeStreams" then "Update" to see some change events.
              */
-            // grades.watch(asList(match(eq("operationType", "update")))).fullDocument(UPDATE_LOOKUP).forEach(print());
+            // pipeline = singletonList(match(eq("operationType", "update")));
+            // grades.watch(pipeline).fullDocument(UPDATE_LOOKUP).forEach(printEvent());
 
             /**
              * => Example 5: iterating using a cursor and a while loop + remembering a resumeToken then restart the Change Streams.
@@ -66,8 +75,9 @@ public class ChangeStreams {
     }
 
     private static void exampleWithResumeToken(MongoCollection<Grade> grades) {
-        MongoChangeStreamCursor<ChangeStreamDocument<Grade>> cursor = grades.watch(asList(match(eq("operationType", "update"))))
-                                                                            .cursor();
+        List<Bson> pipeline = singletonList(match(eq("operationType", "update")));
+        ChangeStreamIterable<Grade> changeStream = grades.watch(pipeline);
+        MongoChangeStreamCursor<ChangeStreamDocument<Grade>> cursor = changeStream.cursor();
         System.out.println("==> Going through the stream a first time & record a resumeToken");
         int indexOfOperationToRestartFrom = 5;
         int indexOfIncident = 8;
@@ -83,10 +93,11 @@ public class ChangeStreams {
         }
         System.out.println("==> Let's imagine something wrong happened and I need to restart my Change Stream.");
         System.out.println("==> Starting from resumeToken=" + resumeToken);
-        grades.watch(asList(match(eq("operationType", "update")))).resumeAfter(resumeToken).forEach(print());
+        assert resumeToken != null;
+        grades.watch(pipeline).resumeAfter(resumeToken).forEach(printEvent());
     }
 
-    private static Consumer<ChangeStreamDocument<Grade>> print() {
+    private static Consumer<ChangeStreamDocument<Grade>> printEvent() {
         return System.out::println;
     }
 }
