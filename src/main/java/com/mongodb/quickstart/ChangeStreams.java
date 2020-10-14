@@ -12,8 +12,6 @@ import org.bson.conversions.Bson;
 
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Filters.eq;
@@ -27,7 +25,6 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class ChangeStreams {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);

@@ -16,8 +16,6 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Filters.eq;
 import static java.util.Collections.singletonList;
@@ -27,7 +25,6 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class MappingPOJO {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);

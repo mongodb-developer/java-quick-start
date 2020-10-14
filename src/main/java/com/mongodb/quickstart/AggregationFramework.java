@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Accumulators.push;
 import static com.mongodb.client.model.Accumulators.sum;
@@ -25,7 +23,6 @@ import static com.mongodb.client.model.Sorts.descending;
 public class AggregationFramework {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         String connectionString = System.getProperty("mongodb.uri");
         try (MongoClient mongoClient = MongoClients.create(connectionString)) {
             MongoDatabase db = mongoClient.getDatabase("sample_training");

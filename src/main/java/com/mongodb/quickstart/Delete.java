@@ -9,17 +9,12 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.gte;
 
 public class Delete {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
-
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
             MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("grades");

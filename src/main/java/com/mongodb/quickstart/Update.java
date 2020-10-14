@@ -12,9 +12,6 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.*;
@@ -22,7 +19,6 @@ import static com.mongodb.client.model.Updates.*;
 public class Update {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         JsonWriterSettings prettyPrint = JsonWriterSettings.builder().indent(true).build();
 
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {

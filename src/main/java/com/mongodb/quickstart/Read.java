@@ -6,8 +6,6 @@ import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Projections.*;
@@ -16,7 +14,6 @@ import static com.mongodb.client.model.Sorts.descending;
 public class Read {
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
             MongoCollection<Document> gradesCollection = sampleTrainingDB.getCollection("grades");

@@ -11,8 +11,6 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static java.util.Arrays.asList;
 
@@ -21,7 +19,6 @@ public class Create {
     private static final Random rand = new Random();
 
     public static void main(String[] args) {
-        Logger.getLogger("org.mongodb.driver").setLevel(Level.WARNING);
         try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri"))) {
 
             MongoDatabase sampleTrainingDB = mongoClient.getDatabase("sample_training");
