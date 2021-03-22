@@ -12,7 +12,9 @@
         <maven-compiler-plugin.source>8</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>8</maven-compiler-plugin.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mongodb-driver-sync.version>4.1.1</mongodb-driver-sync.version>
+        <mongodb-driver-sync.version>4.2.2</mongodb-driver-sync.version>
+        <mongodb-crypt.version>1.2.0</mongodb-crypt.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
@@ -23,9 +25,14 @@
             <version>${mongodb-driver-sync.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-crypt</artifactId>
+            <version>${mongodb-crypt.version}</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.3.0-alpha5</version>
+            <version>${logback-classic.version}</version>
         </dependency>
     </dependencies>
 
