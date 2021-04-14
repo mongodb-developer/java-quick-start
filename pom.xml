@@ -12,7 +12,7 @@
         <maven-compiler-plugin.source>8</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>8</maven-compiler-plugin.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mongodb-driver-sync.version>4.2.2</mongodb-driver-sync.version>
+        <mongodb-driver-sync.version>4.2.3</mongodb-driver-sync.version>
         <mongodb-crypt.version>1.2.0</mongodb-crypt.version>
         <logback-classic.version>1.2.3</logback-classic.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
