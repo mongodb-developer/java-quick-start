@@ -93,7 +93,6 @@ public class ClientSideFieldLevelEncryption {
             System.out.println(aliceDoc);
         } catch (MongoException e) {
             System.err.println("We get a MongoException because 'libmongocrypt' can't decrypt these fields anymore.");
-            e.getCause().printStackTrace();
         }
     }
 

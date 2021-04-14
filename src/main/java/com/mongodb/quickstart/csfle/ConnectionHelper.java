@@ -14,7 +14,7 @@ import java.util.Map;
 public class ConnectionHelper {
 
     private static final ConnectionString CONNECTION_STR = new ConnectionString(System.getProperty("mongodb.uri"));
-    private static final MongoNamespace VAULT_NS = new MongoNamespace("encryption", "vault");
+    private static final MongoNamespace VAULT_NS = new MongoNamespace("csfle", "vault");
     private static final MongoNamespace ENCRYPTED_NS = new MongoNamespace("encryptedDB", "users");
     private static final String LOCAL = "local";
     private final Map<String, Map<String, Object>> kmsProviders;
