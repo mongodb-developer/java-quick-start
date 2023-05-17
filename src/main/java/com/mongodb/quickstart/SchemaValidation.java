@@ -9,7 +9,7 @@ import org.bson.Document;
 public class SchemaValidation {
 
     public static void main(String[] args) {
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://main_user:test123@analytics.fmxyq.mongodb.net/?retryWrites=true&w=majority")) {
+        try (MongoClient mongoClient = MongoClients.create(System.getProperty("mongodb.uri")))) {
             MongoDatabase validatorTestDB = mongoClient.getDatabase("sample_validator");
 
             // Create a validator specifying intended fields for your collection
