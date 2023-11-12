@@ -54,7 +54,7 @@ public class Read {
                                                   .limit(2)
                                                   .into(new ArrayList<>());
 
-            System.out.println("Student sorted, skipped, limited and projected: ");
+            System.out.println("Student sorted, skipped, limited and projected:");
             for (Document student : docs) {
                 System.out.println(student.toJson());
             }

@@ -17,8 +17,6 @@ import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.in;
 import static com.mongodb.client.model.changestream.FullDocument.UPDATE_LOOKUP;
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -48,31 +46,31 @@ public class ChangeStreams {
             /** => Example 2: print only insert and delete operations.
              *  => Start "ChangeStreams" then "MappingPOJOs" to see some change events.
              */
-            // pipeline = singletonList(match(in("operationType", asList("insert", "delete"))));
-            // grades.watch(pipeline).forEach(printEvent());
+//             pipeline = List.of(match(in("operationType", List.of("insert", "delete"))));
+//             grades.watch(pipeline).forEach(printEvent());
 
             /** => Example 3: print only updates without fullDocument.
              *  => Start "ChangeStreams" then "Update" to see some change events (start "Create" before if not done earlier).
              */
-            // pipeline = singletonList(match(eq("operationType", "update")));
-            // grades.watch(pipeline).forEach(printEvent());
+//             pipeline = List.of(match(eq("operationType", "update")));
+//             grades.watch(pipeline).forEach(printEvent());
 
             /** => Example 4: print only updates with fullDocument.
              *  => Start "ChangeStreams" then "Update" to see some change events.
              */
-            // pipeline = singletonList(match(eq("operationType", "update")));
-            // grades.watch(pipeline).fullDocument(UPDATE_LOOKUP).forEach(printEvent());
+//             pipeline = List.of(match(eq("operationType", "update")));
+//             grades.watch(pipeline).fullDocument(UPDATE_LOOKUP).forEach(printEvent());
 
             /**
              * => Example 5: iterating using a cursor and a while loop + remembering a resumeToken then restart the Change Streams.
              * => Start "ChangeStreams" then "Update" to see some change events.
              */
-            // exampleWithResumeToken(grades);
+//             exampleWithResumeToken(grades);
         }
     }
 
     private static void exampleWithResumeToken(MongoCollection<Grade> grades) {
-        List<Bson> pipeline = singletonList(match(eq("operationType", "update")));
+        List<Bson> pipeline = List.of(match(eq("operationType", "update")));
         ChangeStreamIterable<Grade> changeStream = grades.watch(pipeline);
         MongoChangeStreamCursor<ChangeStreamDocument<Grade>> cursor = changeStream.cursor();
         System.out.println("==> Going through the stream a first time & record a resumeToken");

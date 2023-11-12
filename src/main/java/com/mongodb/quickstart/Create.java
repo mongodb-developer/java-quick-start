@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static java.util.Arrays.asList;
-
 public class Create {
 
     private static final Random rand = new Random();
@@ -45,10 +43,10 @@ public class Create {
     }
 
     private static Document generateNewGrade(double studentId, double classId) {
-        List<Document> scores = asList(new Document("type", "exam").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "quiz").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "homework").append("score", rand.nextDouble() * 100),
-                                       new Document("type", "homework").append("score", rand.nextDouble() * 100));
+        List<Document> scores = List.of(new Document("type", "exam").append("score", rand.nextDouble() * 100),
+                                        new Document("type", "quiz").append("score", rand.nextDouble() * 100),
+                                        new Document("type", "homework").append("score", rand.nextDouble() * 100),
+                                        new Document("type", "homework").append("score", rand.nextDouble() * 100));
         return new Document("_id", new ObjectId()).append("student_id", studentId)
                                                   .append("class_id", classId)
                                                   .append("scores", scores);
