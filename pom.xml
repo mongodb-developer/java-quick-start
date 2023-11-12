@@ -10,12 +10,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-compiler-plugin.source>8</maven-compiler-plugin.source>
-        <maven-compiler-plugin.target>8</maven-compiler-plugin.target>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <mongodb-driver-sync.version>4.8.1</mongodb-driver-sync.version>
-        <mongodb-crypt.version>1.6.1</mongodb-crypt.version>
-        <logback-classic.version>1.2.11</logback-classic.version>
+        <maven-compiler-plugin.source>17</maven-compiler-plugin.source>
+        <maven-compiler-plugin.target>17</maven-compiler-plugin.target>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <mongodb-driver-sync.version>4.11.1</mongodb-driver-sync.version>
+        <mongodb-crypt.version>1.8.0</mongodb-crypt.version>
+        <logback-classic.version>1.2.12</logback-classic.version>
     </properties>
 
     <dependencies>

@@ -16,13 +16,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.exists;
 import static com.mongodb.client.model.Indexes.ascending;
 import static com.mongodb.quickstart.csfle.ConsoleDecoration.printSection;
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 
 public class ClientSideFieldLevelEncryption {
 
@@ -111,7 +110,7 @@ public class ClientSideFieldLevelEncryption {
     private void createAndInsertBobbyAndAlice(ClientEncryption encryption, MongoCollection<Document> usersColl) {
         Document bobby = createBobbyDoc(encryption);
         Document alice = createAliceDoc(encryption);
-        int nbInsertedDocs = usersColl.insertMany(asList(bobby, alice)).getInsertedIds().size();
+        int nbInsertedDocs = usersColl.insertMany(List.of(bobby, alice)).getInsertedIds().size();
         System.out.println(nbInsertedDocs + " docs have been inserted.");
     }
 
@@ -124,8 +123,9 @@ public class ClientSideFieldLevelEncryption {
     private Document createBobbyDoc(ClientEncryption encryption) {
         BsonBinary phone = encryption.encrypt(new BsonString("01 23 45 67 89"), deterministic(BOBBY));
         BsonBinary bloodType = encryption.encrypt(new BsonString("A+"), random(BOBBY));
-        BsonDocument medicalEntry = new BsonDocument("test", new BsonString("heart")).append("result", new BsonString("bad"));
-        BsonBinary medicalRecord = encryption.encrypt(new BsonArray(singletonList(medicalEntry)), random(BOBBY));
+        BsonDocument medicalEntry = new BsonDocument("test", new BsonString("heart")).append("result",
+                                                                                             new BsonString("bad"));
+        BsonBinary medicalRecord = encryption.encrypt(new BsonArray(List.of(medicalEntry)), random(BOBBY));
         return new Document("name", BOBBY).append("age", 33)
                                           .append("phone", phone)
                                           .append("blood_type", bloodType)
@@ -148,7 +148,7 @@ public class ClientSideFieldLevelEncryption {
     }
 
     private DataKeyOptions keyAltName(String altName) {
-        return new DataKeyOptions().keyAltNames(singletonList(altName));
+        return new DataKeyOptions().keyAltNames(List.of(altName));
     }
 
     private byte[] generateNewOrRetrieveMasterKeyFromFile(String filename) {

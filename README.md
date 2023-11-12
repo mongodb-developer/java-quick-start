@@ -16,8 +16,8 @@ To get started with MongoDB Atlas and get a free cluster read [this blog post](h
 
 # Requirements
 
-- Java JDK 8 to 15.
-- Maven 3.6.3.
+- Java 17
+- Maven 3.8.7.
 
 # Command lines
 
@@ -84,7 +84,6 @@ mvn compile exec:java -Dexec.mainClass="com.mongodb.quickstart.ChangeStreams" -D
 ```sh
 mvn compile exec:java -Dexec.mainClass="com.mongodb.quickstart.csfle.ClientSideFieldLevelEncryption" -Dmongodb.uri="mongodb+srv://USERNAME:PASSWORD@cluster0-abcde.mongodb.net/test?w=majority" -Dexec.cleanupDaemonThreads=false
 ```
-
 
 # Author
 

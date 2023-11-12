@@ -84,8 +84,8 @@ public class ConnectionHelper {
 
     private Map<String, Map<String, Object>> generateKmsProviders(byte[] masterKey) {
         System.out.println("=> Creating local Key Management System using the master key.");
-        return new HashMap<String, Map<String, Object>>() {{
-            put(LOCAL, new HashMap<String, Object>() {{
+        return new HashMap<>() {{
+            put(LOCAL, new HashMap<>() {{
                 put("key", masterKey);
             }});
         }};
