@@ -55,7 +55,7 @@ public class Transactions {
                            #########  NO  TRANSACTION #########
                            Alice wants 2 beers.
                            We have to create a cart in the 'cart' collection and update the stock in the 'product' collection.
-                           The 2 actions are correlated but can not be executed on the same cluster time.
+                           The 2 actions are correlated but can not be executed at the same cluster time.
                            Any error blocking one operation could result in stock error or a sale of beer that we can't fulfill as we have no stock.
                            ------------------------------------""");
         aliceWantsTwoBeers();
