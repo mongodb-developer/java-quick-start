@@ -51,12 +51,12 @@ public class ChangeStreams {
                                   "price": {
                                     "bsonType": "decimal",
                                     "minimum": 0,
-                                    "description": "must be a positive decimal and is required"
+                                    "description": "must be a non-negative decimal and is required"
                                   },
                                   "stock": {
                                     "bsonType": "int",
                                     "minimum": 0,
-                                    "description": "must be a positive integer and is required"
+                                    "description": "must be a non-negative integer and is required"
                                   }
                                 }
                               }
