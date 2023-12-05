@@ -17,7 +17,7 @@
         <mongodb-crypt.version>1.8.0</mongodb-crypt.version>
         <!-- Have to keep version 1.2.12 because slf4j-api isn't optional in mongodb-crypt and is using an old version. -->
         <!-- See https://jira.mongodb.org/browse/JAVA-5240 for a workaround-->
-        <logback-classic.version>1.2.12</logback-classic.version>
+        <logback-classic.version>1.2.13</logback-classic.version>
         <exec-maven-plugin.version>3.1.1</exec-maven-plugin.version>
     </properties>
 
