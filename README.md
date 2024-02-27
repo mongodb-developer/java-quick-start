@@ -17,7 +17,7 @@ To get started with MongoDB Atlas and get a free cluster read [this blog post](h
 
 # Requirements
 
-- Java 17
+- Java 21
 - Maven 3.8.7.
 
 # Command lines
