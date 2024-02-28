@@ -13,7 +13,7 @@
         <maven-compiler-plugin.source>21</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>21</maven-compiler-plugin.target>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
-        <mongodb-driver-sync.version>5.0.0-beta0</mongodb-driver-sync.version>
+        <mongodb-driver-sync.version>5.0.0</mongodb-driver-sync.version>
         <mongodb-crypt.version>1.8.0</mongodb-crypt.version>
         <!-- Keeping 1.2.13 until mongodb-crypt makes slf4j-api an optional dependency -->
         <!-- https://jira.mongodb.org/browse/MONGOCRYPT-602 -->
