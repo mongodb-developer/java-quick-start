@@ -51,8 +51,7 @@ public class MappingPOJO {
             newScores.add(new Score().setType("exam").setScore(42d));
             grade.setScores(newScores);
             Bson filterByGradeId = eq("_id", grade.getId());
-            FindOneAndReplaceOptions returnDocAfterReplace = new FindOneAndReplaceOptions().returnDocument(
-                    ReturnDocument.AFTER);
+            FindOneAndReplaceOptions returnDocAfterReplace = new FindOneAndReplaceOptions().returnDocument(ReturnDocument.AFTER);
             Grade updatedGrade = grades.findOneAndReplace(filterByGradeId, grade, returnDocAfterReplace);
             System.out.println("Grade replaced:\t" + updatedGrade);
 

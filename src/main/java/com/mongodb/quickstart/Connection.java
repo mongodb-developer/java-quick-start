@@ -25,6 +25,6 @@ public class Connection {
         Document response = mongoClient.getDatabase("admin").runCommand(pingCommand);
         System.out.println("=> Print result of the '{ping: 1}' command.");
         System.out.println(response.toJson(JsonWriterSettings.builder().indent(true).build()));
-        return response.getDouble("ok").equals(1.0);
+        return response.get("ok", Number.class).intValue() == 1;
     }
 }
